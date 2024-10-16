@@ -69,7 +69,7 @@
 
 <script>
 import { clientRef } from '../../firebaseConfig';
-import { onValue, push, remove, ref, update } from 'firebase/database';
+import { onValue, push, remove, update, child } from 'firebase/database';
 
 export default {
   name: 'ClientEditCard',
@@ -87,7 +87,7 @@ export default {
           ...data[key],
           key,
           isEditing: false,
-          editingName: data[key].nome 
+          editingName: data[key].nome
         })) : [];
       });
     },
@@ -95,19 +95,22 @@ export default {
       client.isEditing = true;
     },
     confirmEditClient(client) {
-      const clientRefToUpdate = ref(clientRef, client.key);
+      const clientRefToUpdate = child(clientRef, client.key);
       update(clientRefToUpdate, { nome: client.editingName })
         .then(() => {
           client.isEditing = false;
           client.nome = client.editingName;
+        })
+        .catch(error => {
+          console.error('Error updating client:', error);
         });
     },
     cancelEditClient(client) {
       client.isEditing = false;
-      client.editingName = client.nome; 
+      client.editingName = client.nome;
     },
     removeClient(client) {
-      const clientRefToRemove = ref(clientRef, client.key);
+      const clientRefToRemove = child(clientRef, client.key);
       remove(clientRefToRemove)
         .then(() => {
           this.clients = this.clients.filter(c => c.key !== client.key);

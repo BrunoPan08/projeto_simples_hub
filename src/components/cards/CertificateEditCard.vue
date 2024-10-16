@@ -65,7 +65,7 @@
   
   <script>
   import { certificateRef } from '../../firebaseConfig';
-  import { onValue, push, remove, ref, update } from 'firebase/database';
+  import { onValue, push, remove, update, child } from 'firebase/database';
   
   export default {
     name: 'CertificateEditCard',
@@ -91,7 +91,7 @@
         certificate.isEditing = true;
       },
       confirmEditCertificate(certificate) {
-        const certificateRefToUpdate = ref(certificateRef, certificate.key);
+        const certificateRefToUpdate = child(certificateRef, certificate.key);
         update(certificateRefToUpdate, { empresa: certificate.editingName })
           .then(() => {
             certificate.isEditing = false;
@@ -103,7 +103,7 @@
         certificate.editingName = certificate.empresa;
       },
       removeCertificate(certificateKey) {
-        const certificateRefToRemove = ref(certificateRef, certificateKey);
+        const certificateRefToRemove = child(certificateRef, certificateKey);
         remove(certificateRefToRemove)
           .then(() => {
             this.certificates = this.certificates.filter(certificate => certificate.key !== certificateKey);
