@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
     <title><%= htmlWebpackPlugin.options.title %></title>
+    
+    <!-- Bootstrap CSS -->
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" 
+      integrity="sha384-1e+pt0uC8r1Fuwj63TkJgRI7W/yeo+Vtw9mOonZpK4/ZP2h7bkmLgZ6CD6wR8B2G" 
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <noscript>
@@ -13,5 +22,8 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+    <!-- Bootstrap Bundle JS (includes Popper) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha384-wEmeIV1mOiD4ElW7wD9yLo5bgY1v5xuBlQj6lIICD0EZXvR2E/7d4rZGywZcW58Z" crossorigin="anonymous"></script>
   </body>
 </html>
